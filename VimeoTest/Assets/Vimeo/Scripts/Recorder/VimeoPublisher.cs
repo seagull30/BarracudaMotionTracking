@@ -115,14 +115,19 @@ namespace Vimeo.Recorder
 
         private void UploadComplete(string video_url)
         {
-            if (recorder.openInBrowser == true) {
+            if (recorder.openInBrowser == true)
+            {
                 OpenVideo();
             }
-            if (OnUploadProgress != null) {
+            if (OnUploadProgress != null)
+            {
                 OnUploadProgress("UploadComplete", 1f);
             }
-
             Debug.Log("[VimeoPublisher] Uploaded video to " + video_url);
+            //비디오 파일 정보 playfab 에 올리기
+            PlayFabManager.Instance.SetVideoId(video.id);
+            //업로드 완료시 유저 영상 데이터를 갱신 해줘야함
+            PlayFabManager.Instance.UpdateVideoId();
         }
 
         private void UploadError(string err)
