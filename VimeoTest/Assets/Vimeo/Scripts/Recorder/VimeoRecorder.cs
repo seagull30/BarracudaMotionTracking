@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 using System.IO;
 using Vimeo;
+using UnityEngine.SceneManagement;
 
 namespace Vimeo.Recorder
 {
@@ -63,12 +64,23 @@ namespace Vimeo.Recorder
             isRecording = false;
             encoder.EndRecording();
 
-            if (autoUpload) {
-                PublishVideo();
-            } else {
-                Debug.Log("[VimeoRecorder] Video did not automatically upload. VimeoRecorder.autoUpload is set to false.");
-            }
+           // if (autoUpload) {
+           //     PublishVideo();
+           // } else {
+           //     Debug.Log("[VimeoRecorder] Video did not automatically upload. VimeoRecorder.autoUpload is set to false.");
+           // }
         }
+#if VIMEO_AVPRO_CAPTURE_SUPPORT
+        public void PauseRecording()
+        {
+            encoder.PauseRecording();
+        }
+
+        public void ResumeRecording()
+        {
+            encoder.ResumeRecording();
+        }
+#endif
 
         public void CancelRecording()
         {

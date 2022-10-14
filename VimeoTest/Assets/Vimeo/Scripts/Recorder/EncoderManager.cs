@@ -139,6 +139,18 @@ namespace Vimeo.Recorder
             }
         }
 
+#if VIMEO_AVPRO_CAPTURE_SUPPORT
+        public void PauseRecording()
+        {
+            _avproEncoder.PauseCapture();
+        }
+
+        public void ResumeRecording()
+        {
+            _avproEncoder.ResumeCapture();
+        }
+#endif
+
         public void CancelRecording()
         {
             EndRecording();
