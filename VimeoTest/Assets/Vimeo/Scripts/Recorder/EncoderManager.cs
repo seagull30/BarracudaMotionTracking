@@ -134,7 +134,7 @@ namespace Vimeo.Recorder
 #endif // MEDIA_ENCODER_SUPPORT
             } else {
 #if VIMEO_AVPRO_CAPTURE_SUPPORT
-                // _avproEncoder.StartCapture();
+                 _avproEncoder.StopCapture();
 #endif // VIMEO_AVPRO_CAPTURE_SUPPORT             
             }
         }
@@ -153,8 +153,11 @@ namespace Vimeo.Recorder
 
         public void CancelRecording()
         {
-            EndRecording();
+            isRecording = false;
             DeleteVideoFile();
+#if VIMEO_AVPRO_CAPTURE_SUPPORT
+            _avproEncoder.CancelCapture();
+#endif // VIMEO_AVPRO_CAPTURE_SUPPORT 
         }
 
         public void AddFrame()

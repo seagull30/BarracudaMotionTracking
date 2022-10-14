@@ -60,10 +60,12 @@ public class RecordBtn : MonoBehaviour
 
     public void EndofRecording()
     {
+        Btns[(int)BtnNum.Resume].gameObject.SetActive(false);
+        Btns[(int)BtnNum.Pause].gameObject.SetActive(false);
+        Btns[(int)BtnNum.Cancel].gameObject.SetActive(false);
+        Btns[(int)BtnNum.Start].gameObject.SetActive(true);
         Btns[(int)BtnNum.End].gameObject.SetActive(false);
         Btns[(int)BtnNum.Upload].gameObject.SetActive(true);
-
-
     }
 
     public void CancelRecording()
