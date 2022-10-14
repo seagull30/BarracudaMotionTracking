@@ -38,12 +38,10 @@ public class RecordBtn : MonoBehaviour
    
     public void StartRecording()
     {
-        Btns[(int)BtnNum.Menu].gameObject.SetActive(false);
-
         Btns[(int)BtnNum.Pause].gameObject.SetActive(true);
         Btns[(int)BtnNum.End].gameObject.SetActive(true);
         Btns[(int)BtnNum.Cancel].gameObject.SetActive(true);
-
+        Btns[(int)BtnNum.Menu].gameObject.SetActive(false);
     }
 
     public void PauseRecording()
@@ -65,20 +63,15 @@ public class RecordBtn : MonoBehaviour
         Btns[(int)BtnNum.Resume].gameObject.SetActive(false);
         Btns[(int)BtnNum.Pause].gameObject.SetActive(false);
         Btns[(int)BtnNum.Cancel].gameObject.SetActive(false);
-        Btns[(int)BtnNum.End].gameObject.SetActive(false);
-
         Btns[(int)BtnNum.Start].gameObject.SetActive(true);
+        Btns[(int)BtnNum.End].gameObject.SetActive(false);
         Btns[(int)BtnNum.Upload].gameObject.SetActive(true);
-        Btns[(int)BtnNum.Menu].gameObject.SetActive(true);
-
     }
 
     public void CancelRecording()
     {
         Btns[(int)BtnNum.Resume].gameObject.SetActive(false);
         Btns[(int)BtnNum.Pause].gameObject.SetActive(false);
-        Btns[(int)BtnNum.End].gameObject.SetActive(false);
-
         Btns[(int)BtnNum.Start].gameObject.SetActive(true);
         Btns[(int)BtnNum.Menu].gameObject.SetActive(true);
     }
