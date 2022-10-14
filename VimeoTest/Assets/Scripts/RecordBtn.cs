@@ -14,8 +14,9 @@ public class RecordBtn : MonoBehaviour
         Start,
         Pause,
         Resume,
-        Cancel,
         Upload,
+        End,
+        Cancel,
         Menu,
 
     }
@@ -28,6 +29,7 @@ public class RecordBtn : MonoBehaviour
         for (int i = 0; i < BtnCount; ++i)
         {
             Btns[i] = transform.GetChild(i).GetComponent<Button>();
+            Debug.Log(Btns[i].gameObject.name);
             Btns[i].gameObject.SetActive(false);
         }
         Btns[(int)BtnNum.Start].gameObject.SetActive(true);
@@ -37,7 +39,7 @@ public class RecordBtn : MonoBehaviour
     public void StartRecording()
     {
         Btns[(int)BtnNum.Pause].gameObject.SetActive(true);
-        Btns[(int)BtnNum.Upload].gameObject.SetActive(true);
+        Btns[(int)BtnNum.End].gameObject.SetActive(true);
         Btns[(int)BtnNum.Cancel].gameObject.SetActive(true);
         Btns[(int)BtnNum.Menu].gameObject.SetActive(false);
     }
@@ -56,6 +58,14 @@ public class RecordBtn : MonoBehaviour
 
     }
 
+    public void EndofRecording()
+    {
+        Btns[(int)BtnNum.End].gameObject.SetActive(false);
+        Btns[(int)BtnNum.Upload].gameObject.SetActive(true);
+
+
+    }
+
     public void CancelRecording()
     {
         Btns[(int)BtnNum.Resume].gameObject.SetActive(false);
@@ -66,6 +76,7 @@ public class RecordBtn : MonoBehaviour
 
     public void Upload()
     {
+        Btns[(int)BtnNum.Upload].gameObject.SetActive(false);
 
     }
 
