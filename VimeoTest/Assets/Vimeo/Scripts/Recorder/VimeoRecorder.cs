@@ -41,7 +41,6 @@ namespace Vimeo.Recorder
         }
 
 
-
         public void BeginRecording()
         {
             if (!isRecording) {

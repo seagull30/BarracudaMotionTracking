@@ -143,6 +143,8 @@ namespace Vimeo.Player
             } else if (String.IsNullOrEmpty(vimeoVideoId)) {
                 Debug.LogError("[Vimeo] Can't load video. No video was specificed.");
             } else {
+                //비디오 로드 
+                int vimeoVideoId = PlayFabManager.Instance.currentVideoId();
                 LoadVideo(vimeoVideoId);
             }
         }
