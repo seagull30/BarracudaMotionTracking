@@ -127,7 +127,7 @@ namespace Vimeo.Recorder
             //비디오 파일 정보 playfab 에 올리기
             PlayFabManager.Instance.SetVideoId(video.id);
             //업로드 완료시 유저 영상 데이터를 갱신 해줘야함
-            PlayFabManager.Instance.UpdateVideoId();
+            //PlayFabManager.Instance.UpdateVideoId();
         }
 
         private void UploadError(string err)

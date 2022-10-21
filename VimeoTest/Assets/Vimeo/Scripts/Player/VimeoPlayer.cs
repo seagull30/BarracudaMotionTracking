@@ -144,7 +144,7 @@ namespace Vimeo.Player
                 Debug.LogError("[Vimeo] Can't load video. No video was specificed.");
             } else {
                 //비디오 로드 
-                int vimeoVideoId = PlayFabManager.Instance.currentVideoId();
+                //int vimeoVideoId = PlayFabManager.Instance.currentVideoId();
                 LoadVideo(vimeoVideoId);
             }
         }
@@ -180,24 +180,24 @@ namespace Vimeo.Player
 
         public void PrevPlayVideo()
         {
-            int videoId = PlayFabManager.Instance.preVideoId();
-            if (videoId != -1)
+            //int videoId = PlayFabManager.Instance.preVideoId();
+            /*if (videoId != -1)
             {
                 //플레이
                 //PlayVideo(videoId.ToString());
                 autoPlay = true;
                 LoadVideo(videoId.ToString());
-            }
+            }*/
         }
         public void NextPlayVideo()
         {
-            int videoId = PlayFabManager.Instance.nextVideoId();
-            if (videoId != -1)
+            //int videoId = PlayFabManager.Instance.nextVideoId();
+           /* if (videoId != -1)
             {
                 //플레이
                 autoPlay = true;
                 LoadVideo(videoId.ToString());
-            }
+            }*/
         }
 
         public void PlayVideo(string _vimeoUrl)

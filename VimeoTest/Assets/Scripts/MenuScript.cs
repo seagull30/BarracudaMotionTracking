@@ -15,4 +15,9 @@ public class MenuScript : MonoBehaviour
     {
         SceneManager.LoadScene("PlayerScene");
     }
+
+    public void PlayFabTest()
+    {
+        PlayFabManager.Instance.InitializePostData();
+    }
 }
