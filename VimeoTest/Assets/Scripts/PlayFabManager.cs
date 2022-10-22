@@ -28,6 +28,7 @@ public class PlayFabManager : SingletonBehaviour<PlayFabManager>
     public string UserId;
     public Dictionary<int, string> videoCategoryName = new Dictionary<int, string>();
     public List<Post> postData = new List<Post>();
+    public Post postOneData = new Post();
 
     //비디오 인덱스 번호
     private int VideoIndex = 0;
@@ -106,51 +107,27 @@ public class PlayFabManager : SingletonBehaviour<PlayFabManager>
     void OnInitializePostDataSuccess(ExecuteCloudScriptResult result)
     {
 
-        /*       List<string> test = new List<string>();
-               test = result.FunctionResult;
-
-               JsonObject jsonResult = (JsonObject)result.FunctionResult;
-
-               string json = JsonUtility.ToJson(jsonResult);
-               //postData = JsonUtility.FromJson<List<Post>>(result.FunctionResult.ToString());
-
-               Debug.Log(json);*/
-
-        //JsonObject jsonResult = (JsonObject)result.FunctionResult.ToString();
-
-        //JsonObject jsonResult = (JsonObject)result.FunctionResult;
-        //string json = JsonUtility.ToJson(result.FunctionResult.ToString());
-        //jsonResult["testData"]
-
-        //JsonArray jsonArray = new JsonArray();
-        //jsonArray = (JsonArray)jsonResult["testData"];
-
         JsonArray jsonArray = new JsonArray();
         jsonArray = (JsonArray)result.FunctionResult;
 
-        JsonObject jsonObject = (JsonObject)jsonArray[0];
+        for(int i = 0; i < jsonArray.Count; i++)
+        {
+            JsonObject jsonObject = (JsonObject)jsonArray[i];
 
-        Debug.Log(jsonObject);
+            postOneData = JsonUtility.FromJson<Post>(jsonObject.ToString());
+            //string json = JsonUtility.ToJson(postOneData);//제이슨화
+            postData.Add(postOneData);
+        }
 
-        //saveBackGround = JsonUtility.FromJson<SaveDataBackGround>(url.ToString());
-
-        /*        int list_cnt = jsonArray.Count;
-                for(int i = 0; i < list_cnt; i++)
-                {
-                    JsonObject jsonObject = jsonArray.get
-                }*/
-
-        //Debug.Log(result.FunctionResult);
-
-
-
-
+        Debug.Log(postData);
     }
 
     void OnInitializePostDataError(PlayFabError error)
     {
         Debug.Log("초기화 실패");
     }
+
+
 
 
 
