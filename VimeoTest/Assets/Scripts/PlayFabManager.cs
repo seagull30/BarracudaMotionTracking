@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using PlayFab.Json;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -11,13 +12,13 @@ using UnityEngine.SceneManagement;
 [SerializeField]
 public class Post
 {
-    public int videoId;
-    public string videoName;
-    public int videoIndex;
-    public List<int> videoCategoryList = new List<int>();
-    public string videoPostDate;
-    public string videoUserName;
-    public int videoUserId;
+    public int vimeo_id;
+    public int user_id;
+    public string user_name;
+    public int index;
+    public string video_name;
+    public string video_upload_date;
+    public List<int> category_id_list = new List<int>();
 }
 
 
@@ -26,7 +27,7 @@ public class PlayFabManager : SingletonBehaviour<PlayFabManager>
     public TMP_InputField EmailInput, PasswordInput, UsernameInput;
     public string UserId;
     public Dictionary<int, string> videoCategoryName = new Dictionary<int, string>();
-    public Post postData = new Post();
+    public List<Post> postData = new List<Post>();
 
     //비디오 인덱스 번호
     private int VideoIndex = 0;
@@ -99,13 +100,51 @@ public class PlayFabManager : SingletonBehaviour<PlayFabManager>
         };
 
         PlayFabClientAPI.ExecuteCloudScript(request, OnInitializePostDataSuccess, OnInitializePostDataError);
-
     }
 
 
     void OnInitializePostDataSuccess(ExecuteCloudScriptResult result)
     {
-        Debug.Log(result.FunctionResult.ToString());
+
+        /*       List<string> test = new List<string>();
+               test = result.FunctionResult;
+
+               JsonObject jsonResult = (JsonObject)result.FunctionResult;
+
+               string json = JsonUtility.ToJson(jsonResult);
+               //postData = JsonUtility.FromJson<List<Post>>(result.FunctionResult.ToString());
+
+               Debug.Log(json);*/
+
+        //JsonObject jsonResult = (JsonObject)result.FunctionResult.ToString();
+
+        //JsonObject jsonResult = (JsonObject)result.FunctionResult;
+        //string json = JsonUtility.ToJson(result.FunctionResult.ToString());
+        //jsonResult["testData"]
+
+        //JsonArray jsonArray = new JsonArray();
+        //jsonArray = (JsonArray)jsonResult["testData"];
+
+        JsonArray jsonArray = new JsonArray();
+        jsonArray = (JsonArray)result.FunctionResult;
+
+        JsonObject jsonObject = (JsonObject)jsonArray[0];
+
+        Debug.Log(jsonObject);
+
+        //saveBackGround = JsonUtility.FromJson<SaveDataBackGround>(url.ToString());
+
+        /*        int list_cnt = jsonArray.Count;
+                for(int i = 0; i < list_cnt; i++)
+                {
+                    JsonObject jsonObject = jsonArray.get
+                }*/
+
+        //Debug.Log(result.FunctionResult);
+
+
+
+
     }
 
     void OnInitializePostDataError(PlayFabError error)
