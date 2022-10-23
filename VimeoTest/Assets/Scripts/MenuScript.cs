@@ -20,4 +20,17 @@ public class MenuScript : MonoBehaviour
     {
         PlayFabManager.Instance.InitializePostData();
     }
+
+    public void PlayFabInsert()
+    {
+        Post post = new Post();
+        post.vimeo_id = 123123;
+        post.user_id = "asdasd123";
+        post.user_name = "±è¿µÈÆ";
+        post.video_name = "»õ·Î¿î µ¿¿µ»ó";
+        post.category_id_list.Add(10);
+        post.category_id_list.Add(11);
+
+        PlayFabManager.Instance.InsertPostData(post);
+    }
 }

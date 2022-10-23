@@ -13,7 +13,7 @@ using UnityEngine.SceneManagement;
 public class Post
 {
     public int vimeo_id;
-    public int user_id;
+    public string user_id;
     public string user_name;
     public int index;
     public string video_name;
@@ -127,7 +127,34 @@ public class PlayFabManager : SingletonBehaviour<PlayFabManager>
         Debug.Log("초기화 실패");
     }
 
+    public void InsertPostData(Post PostData)
+    {
+        var request = new ExecuteCloudScriptRequest
+        {
+            FunctionName = "InsertPostData",
+            FunctionParameter = new
+            {
+                vimeo_id = PostData.vimeo_id,
+                user_id = PostData.user_id,
+                user_name = PostData.user_name,
+                video_name = PostData.video_name,
+                category_id_list = PostData.category_id_list
+            }
+        };
 
+        PlayFabClientAPI.ExecuteCloudScript(request, OnInsertPostDataSuccess, OnInsertPostDataError);
+
+    }
+
+    void OnInsertPostDataSuccess(ExecuteCloudScriptResult result)
+    {
+        Debug.Log("성공");
+    }
+
+    void OnInsertPostDataError(PlayFabError error)
+    {
+        Debug.Log(error.ErrorMessage);
+    }
 
 
 
